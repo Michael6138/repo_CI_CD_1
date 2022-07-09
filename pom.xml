@@ -27,6 +27,7 @@
 <!--            <artifactId>junit-jupiter-engine</artifactId>-->
 <!--            <version>5.4.0</version>-->
 <!--        </dependency>-->
+        <!-- https://mvnrepository.com/artifact/org.jenkins-ci.plugins/text-finder -->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
