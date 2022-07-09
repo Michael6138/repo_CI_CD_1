@@ -1,20 +1,46 @@
 pipeline {
-//     agent { docker { image 'maven:3.8.4-openjdk-11-slim' } }
-//     stage('read') {
-//         steps {
-//             script {
-//                 def data = readFile(file: 'C:\\Users\\Michael\\.jenkins\\workspace\\https-michael@script\\1e93aa97472824a8d03dc5c14528a1f2228c590faacc3ba632c1253d4a6a7412\\Jenkinsfile')
-//                 println(data)
-//             }
-//         }
-//     }
+    agent any
+
     stages {
-        stage('build') {
-            echo 'hi 777777777777777777'
+        stage('Header_1') {
             steps {
-                sh 'mvn --version'
+                echo '1'
+            }
+        }
+        stage('Header_2') {
+            steps {
+                echo '2'
+            }
+        }
+
+        stage('Parallel') { // add this
+            parallel {
+                stage('First Parallel Stage') {
+                    environment {
+                        TEST = 3
+                    }
+
+                    steps {
+                        echo "$TEST"
+                    }
+                }
+
+                stage('Execute this together') { // add this
+                    stages {
+                        stage('Another_One') {
+                            steps {
+                                echo "4"
+                            }
+                        }
+
+                        stage('Yet Another_One') {
+                            steps {
+                                echo "5"
+                            }
+                        }
+                    }
+                }
             }
         }
     }
 }
-
