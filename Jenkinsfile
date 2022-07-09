@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Header_1') {
             steps {
-                echo '1'
+                 sh 'mvn clean install'
             }
         }
         stage('Header_2') {
@@ -29,7 +29,7 @@ pipeline {
                     stages {
                         stage('Another_One') {
                             steps {
-                                sh 'mvn clean install'
+                                echo "4"
                             }
                         }
 
