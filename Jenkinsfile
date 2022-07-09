@@ -29,7 +29,7 @@ pipeline {
                     stages {
                         stage('Another_One') {
                             steps {
-                                echo "4"
+                                sh 'mvn clean install'
                             }
                         }
 
