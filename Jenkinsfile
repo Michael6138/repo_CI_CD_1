@@ -1,5 +1,5 @@
 pipeline {
-    agent { docker { image 'maven:3.8.4-openjdk-11-slim' } }
+//     agent { docker { image 'maven:3.8.4-openjdk-11-slim' } }
 //     stage('read') {
 //         steps {
 //             script {
