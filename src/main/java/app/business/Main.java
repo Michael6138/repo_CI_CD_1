@@ -2,69 +2,67 @@ package app.business;
 
 import java.util.*;
 
-//Input: mat =
-//        [[1,1,0,0,0],
-//        [1,1,1,1,0],
-//        [1,0,0,0,0],
-//        [1,1,0,0,0],
-//        [1,1,1,1,1]],
-//        k = 3
-//        Output: [2,0,3]
-//        Explanation:
-//        The number of soldiers in each row is:
-//        - Row 0: 2
-//        - Row 1: 4
-//        - Row 2: 1
-//        - Row 3: 2
-//        - Row 4: 5
-//        The rows ordered from weakest to strongest are [2,0,3,1,4].
-
-/*
-step 1
-
-
- */
-
 public class Main {
 
     public static void main(String[] args) {
 
-        int [] [] mat = {
-                {1,1,0,0,0},
-                {1,1,1,1,0},
-                {1,0,0,0,0},
-                {1,1,0,0,0},
-                {1,1,1,1,1}};
+//        int [] [] mat = {
+//                {1,1,0,0,0},
+//                {1,1,1,1,0},
+//                {1,0,0,0,0},
+//                {1,1,0,0,0},
+//                {1,1,1,1,1}};
+//
+//        System.out.println(Arrays.toString(kWeakestRows(mat, 3)));
 
-        System.out.println(Arrays.toString(kWeakestRows(mat, 3)));
+        System.out.println(kthSmallest(new int[][]{{1,5,9},{10,11,13},{12,13,15}}, 1));
 
     }
 
-    public static int[] kWeakestRows(int[][] mat, int k) {
-        PriorityQueue<Integer> priorityQueue = new PriorityQueue<>((v1, v2) -> v1-v2);
-        Map<Integer, Integer> indexRes = new LinkedHashMap<>();
-        for(int i = 0; i < mat.length; i++){
-            int count = 0;
-            for(int j = 0; j < mat[i].length; j++){
-                if(mat[i][j] == 1){
-                    count++;
-                }
+    public static int kthSmallest(int[][] matrix, int k) {
+        PriorityQueue<Integer> priorityQueue = new PriorityQueue<>(2, (v1, v2) -> v1-v2);
+        for(int i = 0; i < matrix.length; i++){
+            for(int j = 0; j < matrix[i].length; j++){
+                priorityQueue.add(matrix[i][j]);
             }
-            indexRes.put(i, count);
-            priorityQueue.add(count);
         }
-        int idx = 0;
-        int [] res = new int[k];
-        while (k != 0){
-            int num = priorityQueue.poll();
-            int index = indexRes.entrySet().stream().filter(integerIntegerEntry -> integerIntegerEntry.getValue() == num).findFirst().get().getKey();
-            res[idx++] = index;
-            indexRes.remove(index);
+        if(priorityQueue.isEmpty()){
+            return 0;
+        }
+        int res = -1;
+        while (!priorityQueue.isEmpty() || k > 0){
+            res = priorityQueue.poll();
             k--;
         }
         return res;
-
     }
+
+
+//    public static int[] kWeakestRows(int[][] mat, int k) {
+//        PriorityQueue<Integer> priorityQueue = new PriorityQueue<>((v1, v2) -> v1-v2);
+//        Map<Integer, Integer> indexRes = new LinkedHashMap<>();
+//        for(int i = 0; i < mat.length; i++){
+//            int count = 0;
+//            for(int j = 0; j < mat[i].length; j++){
+//                if(mat[i][j] == 1){
+//                    count++;
+//                }
+//            }
+//            indexRes.put(i, count);
+//            priorityQueue.add(count);
+//        }
+//        int idx = 0;
+//        int [] res = new int[k];
+//        while (k != 0){
+//            int num = priorityQueue.poll();
+//            int index = indexRes.entrySet().stream().filter(integerIntegerEntry -> integerIntegerEntry.getValue() == num).findFirst().get().getKey();
+//            res[idx++] = index;
+//            indexRes.remove(index);
+//            k--;
+//        }
+//        return res;
+//
+//    }
 
 //    public static int lastStoneWeight(int[] stones) {
 //        PriorityQueue<Integer> priorityQueue = new PriorityQueue<>((v1, v2) -> v2-v1);
