@@ -15,27 +15,99 @@ public class Main {
 //
 //        System.out.println(Arrays.toString(kWeakestRows(mat, 3)));
 
-        System.out.println(kthSmallest(new int[][]{{1,5,9},{10,11,13},{12,13,15}}, 1));
+//        System.out.println(kthSmallest(new int[][]{{1,5,9},{10,11,13},{12,13,15}}, 1));
+
+//        System.out.println(canWin("----"));
+//        System.out.println(canWin("++++++++"));
+//        System.out.println(canWin("++++++++++"));
+//        System.out.println(canWin("++++++++++++"));
+//        System.out.println(canWin("++++++++++++++"));
+//        System.out.println(canWin("++++++++++++++++"));
+//        System.out.println(canWin("++++++++++++++++++"));
+//        System.out.println(canWin("++++++++++++++++++++"));
+
+
+//        System.out.println(canWin("+++++++"));
+//        System.out.println(canWin("++++"));
+
+
+
 
     }
 
-    public static int kthSmallest(int[][] matrix, int k) {
-        PriorityQueue<Integer> priorityQueue = new PriorityQueue<>(2, (v1, v2) -> v1-v2);
-        for(int i = 0; i < matrix.length; i++){
-            for(int j = 0; j < matrix[i].length; j++){
-                priorityQueue.add(matrix[i][j]);
+
+    boolean isUgly(int n) {
+        if (n < 7) return true;
+        int d = 2;
+        while (n > 1 && d <= 5) {
+            if (n % d == 0) {
+                n /= d;
             }
+            d++;
         }
-        if(priorityQueue.isEmpty()){
-            return 0;
-        }
-        int res = -1;
-        while (!priorityQueue.isEmpty() || k > 0){
-            res = priorityQueue.poll();
-            k--;
-        }
-        return res;
+        return n == 1;
     }
+
+//    public int nthUglyNumber(int n) {
+//        if (n < 7) return true;
+//        int d = 2;
+//        while (n > 1) {
+//            if (n % d == 0) {
+//                if (d != 2 || d != 3 || d != 5) return false;
+//                n /= d;
+//            }
+//            d++;
+//        }
+//        return true;
+//
+//    }
+
+
+//    public static boolean canWin(String currentState) {
+//            int pairPlus = 0;
+//            char [] chars = currentState.toCharArray();
+//            for(int i = 1; i < chars.length; i++){
+//                if(chars[i] == chars[i-1]){
+//                    if(chars[i] == '+'){
+//                        pairPlus++;
+//                    }
+//                }
+//            }
+//           int res = pairPlus - 1;
+//            if((res / 2) % 2 == 0){
+//                return true;
+//            }
+//            return false;
+//
+//    }
+
+
+    public static boolean canWin2(String currentState) {
+        int len = currentState.length();
+        if((len - 2)%2 == 0){
+            return true;
+        }
+        return false;
+
+    }
+
+//    public static int kthSmallest(int[][] matrix, int k) {
+//        PriorityQueue<Integer> priorityQueue = new PriorityQueue<>(2, (v1, v2) -> v1-v2);
+//        for(int i = 0; i < matrix.length; i++){
+//            for(int j = 0; j < matrix[i].length; j++){
+//                priorityQueue.add(matrix[i][j]);
+//            }
+//        }
+//        if(priorityQueue.isEmpty()){
+//            return 0;
+//        }
+//        int res = -1;
+//        while (!priorityQueue.isEmpty() || k > 0){
+//            res = priorityQueue.poll();
+//            k--;
+//        }
+//        return res;
+//    }
 
 
 //    public static int[] kWeakestRows(int[][] mat, int k) {
