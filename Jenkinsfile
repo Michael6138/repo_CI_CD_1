@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Header_1') {
             steps {
-                 sh 'mvn clean install'
+                 bat 'mvn clean install'
             }
         }
         stage('Header_2') {
